@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(6, 100px);
+    gap: 20px;
+    text-align: center;
+    justify-content: center;
+
+    div:nth-child(1) {
+        grid-column-start: 1;
+        grid-column-end: 5;
+      }
+
+      div:nth-child(9) {
+        grid-column-start: 4;
+        grid-row-start: 3;
+        grid-row-end: 7;
+      }
+
+    .grid-item {
+        background-color: grey;
+        border: 1px solid red;
+      }
+}
