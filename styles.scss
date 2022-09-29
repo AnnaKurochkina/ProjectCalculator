@@ -25,7 +25,7 @@ main {
     text-align: center;
     justify-content: center;
 
-    div:nth-child(1) {
+    input:nth-child(1) {
         grid-column-start: 1;
         grid-column-end: 5;
       }
@@ -36,7 +36,7 @@ main {
         grid-row-end: 7;
       }
 
-    .grid-item__calculator {
+    .grid-item__keys, .grid-item__display {
         border: 1px solid black;
       }
 }
