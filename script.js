@@ -4,11 +4,25 @@ const calculator = {
     firstOperand: null,
     waitingForSecondOperand: false,
     operator: null,
-    updateDisplayValue: function(value) {
+    appendDecimal: function() {
+        if (!this.displayValue.includes(".")) {
+            this.displayValue += '.';
+        }
+    },
+    appendDigit: function(value) {
         if (this.displayValue == '0') {
             this.displayValue = value;
         } else {
             this.displayValue += value;
+        }
+    },
+    removeDigit: function() {
+        if (this.displayValue !== '0') {
+            if (this.displayValue.length > 1) {
+                this.displayValue = this.displayValue.substr(0, this.displayValue.length - 1);
+            } else {
+                this.displayValue = '0';
+            }
         }
     },
     reset: function() {
@@ -29,7 +43,6 @@ updateDisplay();
 const operatorClicked = (event) => {
     if (event.target.classList.contains('add')) {
         alert("add");
-        firstOperand + displayValue;
     } else if (event.target.classList.contains('subtract')) {
         alert("subtract");
     } else if (event.target.classList.contains('multiply')) {
@@ -42,21 +55,16 @@ const operatorClicked = (event) => {
 };
 
 const digitClicked = (event) => {
-    calculator.updateDisplayValue(event.target.dataset.digit);
+    calculator.appendDigit(event.target.dataset.digit);
     updateDisplay();
 };
 
 const decimalClicked = (event) => {
-    
-    if (!calculator.displayValue.includes(".")) {
-        calculator.displayValue += '.';
-    } else {
-        calculator.displayValue;
-    }
+    calculator.appendDecimal();
     updateDisplay();
 };
 
-const clearAllClicked = (event) => {
+const clearClicked = (event) => {
     calculator.reset();
     updateDisplay();
 };
@@ -65,40 +73,26 @@ const equalsClicked = (event) => {
     alert("equals");
     /* calculator.compute(); */
     updateDisplay();
-}
+};
 
-const deleteLastClicked = (event) => {
-    alert("del");
-    // if (calculator.displayValue.includes("delete")) {
-    //     alert("del");
-    // }
-    // updateDisplay(); 
-    // calculator.displayValue.split("").pop(); 
- } 
+const deleteClicked = (event) => {
+    calculator.removeDigit();
+    updateDisplay();
+}; 
 
 const operatorButtons = document.querySelectorAll('.operator');
 const digitButtons = document.querySelectorAll('.digit');
-
 const decimalButton = document.querySelector('.decimal');
 const clearButton = document.querySelector('.clear');
-
-/* const deleteLastButton = document.querySelector('.delete'); */
-
+const deleteButton = document.querySelector('.delete');
 const equalsButton = document.querySelector('.equals');
-
 
 operatorButtons.forEach(button => button.addEventListener('click', operatorClicked));
 digitButtons.forEach(button => button.addEventListener('click', digitClicked));
-
 decimalButton.addEventListener('click', decimalClicked);
-clearButton.addEventListener('click', clearAllClicked);
-
-/* deleteLastButton.addEventListener('click', deleteLastClicked); */
-
-
-
+clearButton.addEventListener('click', clearClicked);
+deleteButton.addEventListener('click', deleteClicked);
 equalsButton.addEventListener('click', equalsClicked);
-
 
 const compute = (firstOperand, displayValue, operator) => {
     
