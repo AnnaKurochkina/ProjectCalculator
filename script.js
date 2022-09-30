@@ -35,29 +35,7 @@ const operatorClicked = (event) => {
 };
 
 const digitClicked = (event) => {
-    if (event.target.classList.contains('one')) {
-        calculator.updateDisplayValue('1');
-    } else if (event.target.classList.contains('two')) {
-        calculator.updateDisplayValue('2');
-    } else if (event.target.classList.contains('three')) {
-        calculator.updateDisplayValue('3');
-    } else if (event.target.classList.contains('four')) {
-        calculator.updateDisplayValue('4');
-    } else if (event.target.classList.contains('five')) {
-        calculator.updateDisplayValue('5');
-    } else if (event.target.classList.contains('six')) {
-        calculator.updateDisplayValue('6');
-    } else if (event.target.classList.contains('seven')) {
-        calculator.updateDisplayValue('7');
-    } else if (event.target.classList.contains('eight')) {
-        calculator.updateDisplayValue('8');
-    } else if (event.target.classList.contains('nine')) {
-        calculator.updateDisplayValue('9');
-    } else if (event.target.classList.contains('zero')) {
-        calculator.updateDisplayValue('0');
-    } else {
-        throw "not supported"
-    }
+    calculator.updateDisplayValue(event.target.dataset.digit);
     updateDisplay();
 };
 
