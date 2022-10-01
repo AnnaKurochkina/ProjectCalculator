@@ -11,12 +11,14 @@
     <main>
         <div class="flex-container__calculator">
             <div class="grid-container__calculator">
-                <input class="grid-item__display" type="text" disabled></input>
-
-                <button class="grid-item__keys operator add">+</button>
-                <button class="grid-item__keys operator subtract">-</button>
-                <button class="grid-item__keys operator multiply">&times;</button>
-                <button class="grid-item__keys operator divide">÷</button>
+                <div class="grid-item__display">
+                    <input type="text" id="infoValue" disabled/>
+                    <input type="text" id="displayValue" disabled/>
+                </div>
+                <button class="grid-item__keys operator" data-operator="+">+</button>
+                <button class="grid-item__keys operator" data-operator="-">-</button>
+                <button class="grid-item__keys operator" data-operator="x">&times;</button>
+                <button class="grid-item__keys operator" data-operator="÷">÷</button>
                 <button class="grid-item__keys digit" data-digit="7">7</button>
                 <button class="grid-item__keys digit" data-digit="8">8</button>
                 <button class="grid-item__keys digit" data-digit="9">9</button>

@@ -25,15 +25,19 @@ main {
   text-align: center;
   justify-content: center;
 }
-.grid-container__calculator input:nth-child(1) {
+.grid-container__calculator div {
   grid-column-start: 1;
   grid-column-end: 5;
+}
+.grid-container__calculator div input {
+  display: block;
 }
 .grid-container__calculator button:nth-child(14) {
   grid-column-start: 4;
   grid-row-start: 4;
   grid-row-end: 7;
 }
-.grid-container__calculator .grid-item__keys, .grid-container__calculator .grid-item__display {
+.grid-container__calculator .grid-item__keys,
+.grid-container__calculator .grid-item__display {
   border: 1px solid black;
 }

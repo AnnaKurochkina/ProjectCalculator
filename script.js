@@ -1,5 +1,6 @@
 
 const calculator = {
+    infoValue: null,
     displayValue: '0',
     firstOperand: null,
     waitingForSecondOperand: false,
@@ -10,11 +11,12 @@ const calculator = {
         }
     },
     appendDigit: function(value) {
-        if (this.displayValue == '0') {
+        if (this.displayValue == '0' || this.waitingForSecondOperand) {
             this.displayValue = value;
         } else {
             this.displayValue += value;
         }
+        this.waitingForSecondOperand = false;
     },
     removeDigit: function() {
         if (this.displayValue !== '0') {
@@ -26,32 +28,62 @@ const calculator = {
         }
     },
     reset: function() {
+        this.infoValue = null;
         this.displayValue = '0';
         this.firstOperand = null;
         this.waitingForSecondOperand = false;
         this.operator = null;
+    },
+    equals: function() {
+        if (this.waitingForSecondOperand == false && this.firstOperand != null) {
+            const secondOperand = Number.parseFloat(this.displayValue);
+            let result;
+            switch(this.operator) {
+                case "+":
+                    result = this.firstOperand + secondOperand;
+                    break;
+                case "-":
+                    result = this.firstOperand - secondOperand;
+                    break;
+                case "x":
+                    result = this.firstOperand * secondOperand;
+                    break;
+                case "÷":
+                    result = this.firstOperand / secondOperand;
+                    break;
+            }
+            this.infoValue += secondOperand + '=';
+            this.displayValue = result;
+            this.firstOperand = result;
+            this.waitingForSecondOperand = true;
+            this.operator = null;
+        }
+    },
+    setOperator: function(operator) {
+        if (this.operator != null) {
+            this.equals();
+        }
+        
+        this.infoValue = `${this.displayValue}${operator}`;
+        this.firstOperand = Number.parseFloat(this.displayValue);
+        this.waitingForSecondOperand = true;
+        this.operator = operator;
     }
 };
 
 const updateDisplay = () => {
-    const display = document.querySelector(".grid-item__display");
+    const info = document.querySelector("#infoValue");
+    const display = document.querySelector("#displayValue");
+
+    info.value = calculator.infoValue;
     display.value = calculator.displayValue;
 };
 
 updateDisplay();
 
 const operatorClicked = (event) => {
-    if (event.target.classList.contains('add')) {
-        alert("add");
-    } else if (event.target.classList.contains('subtract')) {
-        alert("subtract");
-    } else if (event.target.classList.contains('multiply')) {
-        alert("muitiply");
-    } else if (event.target.classList.contains('divide')) {
-        alert("divide");
-    } else {
-        throw "not supported"
-    };
+    calculator.setOperator(event.target.dataset.operator);
+    updateDisplay();
 };
 
 const digitClicked = (event) => {
@@ -70,8 +102,7 @@ const clearClicked = (event) => {
 };
 
 const equalsClicked = (event) => {
-    alert("equals");
-    /* calculator.compute(); */
+    calculator.equals();
     updateDisplay();
 };
 
@@ -93,21 +124,3 @@ decimalButton.addEventListener('click', decimalClicked);
 clearButton.addEventListener('click', clearClicked);
 deleteButton.addEventListener('click', deleteClicked);
 equalsButton.addEventListener('click', equalsClicked);
-
-const compute = (firstOperand, displayValue, operator) => {
-    
-    switch(operator) {
-        case "add":
-            result = firstOperand + displayValue;
-            break;
-            case "subtract":
-            result = firstOperand - displayValue;
-            break;
-            case "multiply":
-            result = firstOperand * displayValue;
-            break;
-            case "divide":
-            result = firstOperand / displayValue;
-            break;
-    }
-}
