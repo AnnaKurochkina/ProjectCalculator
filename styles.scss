@@ -13,25 +13,34 @@ main {
 
 .flex-container__calculator {
   padding: 10px;
-  border-radius: 10px;
+  border-radius: .8rem;
   border: 2px solid black;
 }
 
 
 .grid-container__calculator {
   display: grid;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: repeat(6, 100px);
-  gap: 20px;
+  grid-template-columns: repeat(4, 7rem);
+  grid-template-rows: repeat(6, 7rem);
+  gap: 1rem;
   text-align: center;
   justify-content: center;
 
   div {
     grid-column-start: 1;
     grid-column-end: 5;
-
+    
     input {
       display: block;
+      width: 30rem;
+      border: none;
+      font-size: 2.6rem;
+      text-align: end;
+      color: black;
+
+      &:nth-child(1) {
+        color: lightslategray;
+      }
     }
   }
 
@@ -44,5 +53,6 @@ main {
   .grid-item__keys,
   .grid-item__display {
     border: 1px solid black;
+    font-size: 2.6rem;
   }
 }

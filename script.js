@@ -10,11 +10,11 @@ const calculator = {
             this.displayValue += '.';
         }
     },
-    appendDigit: function(value) {
+    appendDigit: function(newDigit) {
         if (this.displayValue == '0' || this.waitingForSecondOperand) {
-            this.displayValue = value;
+            this.displayValue = newDigit;
         } else {
-            this.displayValue += value;
+            this.displayValue += newDigit;
         }
         this.waitingForSecondOperand = false;
     },
@@ -59,15 +59,15 @@ const calculator = {
             this.operator = null;
         }
     },
-    setOperator: function(operator) {
+    setOperator: function(newOperator) {
         if (this.operator != null) {
             this.equals();
         }
         
-        this.infoValue = `${this.displayValue}${operator}`;
+        this.infoValue = `${this.displayValue}${newOperator}`;
         this.firstOperand = Number.parseFloat(this.displayValue);
         this.waitingForSecondOperand = true;
-        this.operator = operator;
+        this.operator = newOperator;
     }
 };
 
