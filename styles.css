@@ -56,12 +56,12 @@ main {
 .grid-container__calculator .digit, .grid-container__calculator .decimal {
   background-color: darkgray;
 }
-.grid-container__calculator .equals, .grid-container__calculator .clear, .grid-container__calculator .delete {
+.grid-container__calculator .equals, .grid-container__calculator .clear, .grid-container__calculator .delete, .grid-container__calculator .plusMinus {
   background-color: coral;
 }
-.grid-container__calculator button:nth-child(14) {
+.grid-container__calculator button:nth-child(17) {
   grid-column-start: 4;
-  grid-row-start: 4;
+  grid-row-start: 5;
   grid-row-end: 7;
 }
 .grid-container__calculator .grid-item__keys {

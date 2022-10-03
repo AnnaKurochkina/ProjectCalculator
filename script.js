@@ -7,7 +7,7 @@ class Calculator
     waitingForSecondOperand = false;
     operator = null;
     appendDecimal = () => {
-        if (!this.displayValue.includes(".")) {
+        if (!this.displayValue.includes('.')) {
             this.displayValue += '.';
         }
     };
@@ -28,6 +28,15 @@ class Calculator
             }
         }
     };
+    plusMinus = () => {
+        if (this.displayValue !== '0') {
+            if (this.displayValue.startsWith('-')) {
+                this.displayValue = this.displayValue.substring(1);
+            } else {
+                this.displayValue = `-${this.displayValue}`;
+            }
+        }
+    };
     reset = () => {
         this.infoValue = null;
         this.displayValue = '0';
@@ -40,16 +49,16 @@ class Calculator
             const secondOperand = Number.parseFloat(this.displayValue);
             let result;
             switch(this.operator) {
-                case "+":
+                case '+':
                     result = this.firstOperand + secondOperand;
                     break;
-                case "-":
+                case '-':
                     result = this.firstOperand - secondOperand;
                     break;
-                case "x":
+                case 'x':
                     result = this.firstOperand * secondOperand;
                     break;
-                case "÷":
+                case '÷':
                     result = this.firstOperand / secondOperand;
                     break;
             }
@@ -75,8 +84,8 @@ class Calculator
 const calculator = new Calculator();
 
 const updateDisplay = () => {
-    const info = document.querySelector("#infoValue");
-    const display = document.querySelector("#displayValue");
+    const info = document.querySelector('#infoValue');
+    const display = document.querySelector('#displayValue');
 
     info.value = calculator.infoValue;
     display.value = calculator.displayValue;
@@ -114,11 +123,17 @@ const deleteClicked = (event) => {
     updateDisplay();
 }; 
 
+const plusMinusClicked = (event) => {
+    calculator.plusMinus();
+    updateDisplay();
+}; 
+
 const operatorButtons = document.querySelectorAll('.operator');
 const digitButtons = document.querySelectorAll('.digit');
 const decimalButton = document.querySelector('.decimal');
 const clearButton = document.querySelector('.clear');
 const deleteButton = document.querySelector('.delete');
+const plusMinusButton = document.querySelector('.plusMinus');
 const equalsButton = document.querySelector('.equals');
 
 operatorButtons.forEach(button => button.addEventListener('click', operatorClicked));
@@ -126,6 +141,7 @@ digitButtons.forEach(button => button.addEventListener('click', digitClicked));
 decimalButton.addEventListener('click', decimalClicked);
 clearButton.addEventListener('click', clearClicked);
 deleteButton.addEventListener('click', deleteClicked);
+plusMinusButton.addEventListener('click', plusMinusClicked);
 equalsButton.addEventListener('click', equalsClicked);
 
 document.addEventListener('keydown', (event) => {
@@ -134,10 +150,10 @@ document.addEventListener('keydown', (event) => {
         const operatorButtonsArray = Array.from(operatorButtons);
         const operatorButton = operatorButtonsArray.find(button => {
             switch(button.dataset.operator) {
-                case "x":
-                    return event.key == "*";
-                case "÷":
-                    return event.key == "/";
+                case 'x':
+                    return event.key == '*';
+                case '÷':
+                    return event.key == '/';
                 default:
                     return event.key == button.dataset.operator;
             }
@@ -146,17 +162,17 @@ document.addEventListener('keydown', (event) => {
             operatorButton.click();
         } else {
             switch(event.key) {
-                case "Enter":
-                case "=":
+                case 'Enter':
+                case '=':
                     equalsButton.click();
                     break;
-                case "Backspace":
+                case 'Backspace':
                     deleteButton.click();
                     break;
-                case "Delete":
+                case 'Delete':
                     clearButton.click();
                     break;
-                case ".":
+                case '.':
                     decimalButton.click();
                     break;
                 default:

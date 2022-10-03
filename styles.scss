@@ -62,13 +62,13 @@ main {
     background-color: darkgray;
   }
 
-  .equals, .clear, .delete {
+  .equals, .clear, .delete, .plusMinus {
     background-color: coral;
   }
 
-  button:nth-child(14) {
+  button:nth-child(17) {
     grid-column-start: 4;
-    grid-row-start: 4;
+    grid-row-start: 5;
     grid-row-end: 7;
   }
 
