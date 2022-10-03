@@ -1,24 +1,25 @@
 
-const calculator = {
-    infoValue: null,
-    displayValue: '0',
-    firstOperand: null,
-    waitingForSecondOperand: false,
-    operator: null,
-    appendDecimal: function() {
+class Calculator 
+{
+    infoValue = null;
+    displayValue = '0';
+    firstOperand = null;
+    waitingForSecondOperand = false;
+    operator = null;
+    appendDecimal = () => {
         if (!this.displayValue.includes(".")) {
             this.displayValue += '.';
         }
-    },
-    appendDigit: function(newDigit) {
+    };
+    appendDigit = (newDigit) => {
         if (this.displayValue == '0' || this.waitingForSecondOperand) {
             this.displayValue = newDigit;
         } else {
             this.displayValue += newDigit;
         }
         this.waitingForSecondOperand = false;
-    },
-    removeDigit: function() {
+    };
+    removeDigit = () => {
         if (this.displayValue !== '0') {
             if (this.displayValue.length > 1) {
                 this.displayValue = this.displayValue.substr(0, this.displayValue.length - 1);
@@ -26,15 +27,15 @@ const calculator = {
                 this.displayValue = '0';
             }
         }
-    },
-    reset: function() {
+    };
+    reset = () => {
         this.infoValue = null;
         this.displayValue = '0';
         this.firstOperand = null;
         this.waitingForSecondOperand = false;
         this.operator = null;
-    },
-    equals: function() {
+    };
+    equals = () => {
         if (this.waitingForSecondOperand == false && this.firstOperand != null) {
             const secondOperand = Number.parseFloat(this.displayValue);
             let result;
@@ -58,8 +59,8 @@ const calculator = {
             this.waitingForSecondOperand = true;
             this.operator = null;
         }
-    },
-    setOperator: function(newOperator) {
+    };
+    setOperator = (newOperator) => {
         if (this.operator != null) {
             this.equals();
         }
@@ -68,8 +69,10 @@ const calculator = {
         this.firstOperand = Number.parseFloat(this.displayValue);
         this.waitingForSecondOperand = true;
         this.operator = newOperator;
-    }
-};
+    };
+}
+
+const calculator = new Calculator();
 
 const updateDisplay = () => {
     const info = document.querySelector("#infoValue");
@@ -124,3 +127,5 @@ decimalButton.addEventListener('click', decimalClicked);
 clearButton.addEventListener('click', clearClicked);
 deleteButton.addEventListener('click', deleteClicked);
 equalsButton.addEventListener('click', equalsClicked);
+
+
