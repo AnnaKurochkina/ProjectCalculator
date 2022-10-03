@@ -7,14 +7,17 @@
 main {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  height: 90vh;
+  align-items: center;
+  height: 100vh;
+  background: url("Wallpaper.jpg") no-repeat;
 }
 
 .flex-container__calculator {
   padding: 10px;
   border-radius: 0.8rem;
-  border: 2px solid black;
+  border: 2px solid #940660;
+  background-color: #161647;
+  opacity: 0.8;
 }
 
 .grid-container__calculator {
@@ -31,22 +34,62 @@ main {
 }
 .grid-container__calculator div input {
   display: block;
-  width: 30rem;
+  width: 31rem;
   border: none;
   font-size: 2.6rem;
   text-align: end;
   color: black;
+  background-color: lightgray;
+}
+.grid-container__calculator div input#infoValue {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 .grid-container__calculator div input:nth-child(1) {
-  color: lightslategray;
+  color: #646464;
+}
+.grid-container__calculator .operator {
+  background-color: coral;
+}
+.grid-container__calculator .digit, .grid-container__calculator .decimal {
+  background-color: darkgray;
+}
+.grid-container__calculator .equals, .grid-container__calculator .clear, .grid-container__calculator .delete {
+  background-color: coral;
 }
 .grid-container__calculator button:nth-child(14) {
   grid-column-start: 4;
   grid-row-start: 4;
   grid-row-end: 7;
 }
+.grid-container__calculator .grid-item__keys {
+  border: none;
+  border-radius: 1rem;
+  border: 1px solid black;
+}
+.grid-container__calculator .grid-item__keys:hover {
+  filter: brightness(125%);
+}
+.grid-container__calculator .grid-item__keys:hover:active {
+  filter: brightness(180%);
+}
 .grid-container__calculator .grid-item__keys,
 .grid-container__calculator .grid-item__display {
-  border: 1px solid black;
   font-size: 2.6rem;
+}
+
+@media screen and (min-width: 360px) and (max-width: 800px) {
+  .grid-container__calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 4rem);
+    grid-template-rows: repeat(6, 4rem);
+  }
+  .grid-container__calculator div input {
+    width: 19rem;
+    font-size: 1.8rem;
+  }
+  .grid-container__calculator .grid-item__keys,
+.grid-container__calculator .grid-item__display {
+    font-size: 1.8rem;
+  }
 }

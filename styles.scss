@@ -7,16 +7,18 @@
 main {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  height: 90vh;
+  align-items: center;
+  height: 100vh;
+  background: url("Wallpaper.jpg") no-repeat;
 }
 
 .flex-container__calculator {
   padding: 10px;
   border-radius: .8rem;
-  border: 2px solid black;
+  border: 2px solid rgb(148, 6, 96);
+  background-color: rgb(22, 22, 71);
+  opacity: .8;
 }
-
 
 .grid-container__calculator {
   display: grid;
@@ -25,6 +27,7 @@ main {
   gap: 1rem;
   text-align: center;
   justify-content: center;
+  
 
   div {
     grid-column-start: 1;
@@ -32,16 +35,34 @@ main {
     
     input {
       display: block;
-      width: 30rem;
+      width: 31rem;
       border: none;
       font-size: 2.6rem;
       text-align: end;
       color: black;
+      background-color: lightgray;
+
+      &#infoValue { 
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+      }
 
       &:nth-child(1) {
-        color: lightslategray;
+        color: rgb(100, 100, 100);
       }
     }
+  }
+
+  .operator {
+    background-color: coral;
+  }
+
+  .digit, .decimal {
+    background-color: darkgray;
+  }
+
+  .equals, .clear, .delete {
+    background-color: coral;
   }
 
   button:nth-child(14) {
@@ -50,9 +71,41 @@ main {
     grid-row-end: 7;
   }
 
+  .grid-item__keys {
+    border: none;
+    border-radius: 1rem;
+    border: 1px solid black;
+
+    &:hover {
+      filter: brightness(125%);
+
+      &:active {
+        filter: brightness(180%)
+      }
+    }
+  }
+
   .grid-item__keys,
   .grid-item__display {
-    border: 1px solid black;
     font-size: 2.6rem;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 800px) {
+
+  .grid-container__calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 4rem);
+    grid-template-rows: repeat(6, 4rem);
+
+    div input {
+      width: 19rem;
+      font-size: 1.8rem;
+    }
+
+    .grid-item__keys,
+    .grid-item__display {
+      font-size: 1.8rem;
+    }
   }
 }
