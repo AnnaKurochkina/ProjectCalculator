@@ -44,9 +44,11 @@ main {
 .grid-container__calculator div input#infoValue {
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-}
-.grid-container__calculator div input:nth-child(1) {
   color: #646464;
+}
+.grid-container__calculator div input#displayValue {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 .grid-container__calculator .operator {
   background-color: coral;

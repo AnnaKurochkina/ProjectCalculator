@@ -45,10 +45,11 @@ main {
       &#infoValue { 
         border-top-left-radius: .5rem;
         border-top-right-radius: .5rem;
-      }
-
-      &:nth-child(1) {
         color: rgb(100, 100, 100);
+      }
+      &#displayValue { 
+        border-bottom-left-radius: .5rem;
+        border-bottom-right-radius: .5rem;
       }
     }
   }
