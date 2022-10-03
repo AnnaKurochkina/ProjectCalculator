@@ -22,7 +22,7 @@ class Calculator
     removeDigit = () => {
         if (this.displayValue !== '0') {
             if (this.displayValue.length > 1) {
-                this.displayValue = this.displayValue.substr(0, this.displayValue.length - 1);
+                this.displayValue = this.displayValue.substring(0, this.displayValue.length - 1);
             } else {
                 this.displayValue = '0';
             }
@@ -128,4 +128,44 @@ clearButton.addEventListener('click', clearClicked);
 deleteButton.addEventListener('click', deleteClicked);
 equalsButton.addEventListener('click', equalsClicked);
 
-
+document.addEventListener('keydown', (event) => {
+    const keyAsInt = parseInt(event.key);
+    if (isNaN(keyAsInt)) {
+        const operatorButtonsArray = Array.from(operatorButtons);
+        const operatorButton = operatorButtonsArray.find(button => {
+            switch(button.dataset.operator) {
+                case "x":
+                    return event.key == "*";
+                case "÷":
+                    return event.key == "/";
+                default:
+                    return event.key == button.dataset.operator;
+            }
+        });
+        if (operatorButton) {
+            operatorButton.click();
+        } else {
+            switch(event.key) {
+                case "Enter":
+                case "=":
+                    equalsButton.click();
+                    break;
+                case "Backspace":
+                    deleteButton.click();
+                    break;
+                case "Delete":
+                    clearButton.click();
+                    break;
+                case ".":
+                    decimalButton.click();
+                    break;
+                default:
+                    break;
+            }
+        }
+    } else {
+        const digitButtonsArray = Array.from(digitButtons);
+        const digitButton = digitButtonsArray.find(button => button.dataset.digit == event.key);
+        digitButton.click();
+    }
+});
